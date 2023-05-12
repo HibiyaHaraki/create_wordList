@@ -81,6 +81,8 @@ function [wordList,docsList] = create_wordList(doc_folder_name,deleteWords,optio
         numDeleteWords = length(deleteWords);
         verbose(start_time,sprintf("Input %d delete words",numDeleteWords), ...
             "Mode",options.verbose);
+        deleteWords = [deleteWords;unique(normalizeWords(deleteWords,'Style','lemma'))];
+        deleteWords = unique(deleteWords);
     end
 
     % Check options

@@ -95,4 +95,7 @@ if (delete_abbreviation)
 end
 
 %% Create word list with the function
-[wordList,docsList] = create_wordList(path_to_doc_folder,delete_words,'verbose',true);
+[wordList,docsList] = create_wordList(path_to_doc_folder,delete_words,'outputTable',true,'verbose',true);
+
+%% Create word cloud
+wordcloud(wordList,'vocabulary','freq');

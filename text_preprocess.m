@@ -17,12 +17,14 @@ function cleanedDocuments = text_preprocess(string_data)
 
     % Create Tokenized data
     string_data = eraseURLs(string_data);
+    string_data = erase(string_data,'-\n');
+    string_data = replace(string_data,'-',' ');
     string_data = replace(string_data,' '+digitsPattern+' ',' ');
-    Documents = tokenizedDocument(string_data);
+    Documents = tokenizedDocument(string_data,'Language','en');
 
     % Clean the tokenized data
     cleanedDocuments = correctSpelling(Documents);
-    cleanedDocuments = addPartOfSpeechDetails(cleanedDocuments);
+    %cleanedDocuments = addPartOfSpeechDetails(cleanedDocuments);
     cleanedDocuments = removeStopWords(cleanedDocuments);
     cleanedDocuments = normalizeWords(cleanedDocuments,'Style','lemma');
     cleanedDocuments = erasePunctuation(cleanedDocuments);
